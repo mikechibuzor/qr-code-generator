@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-// componets
-import HomePage from "./components/screeens/Homepage.vue";
+// components
+
+import HomePage from "./components/screens/HomePage.vue";
 import TheHistory from "./components/screens/TheHistory.vue";
 
 const router = createRouter({
