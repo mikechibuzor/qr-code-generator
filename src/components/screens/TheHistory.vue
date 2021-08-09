@@ -10,6 +10,7 @@
         :key="history.id"
         :userUrl="history.userEnteredUrl"
         :imgSrc="history.imgUrl"
+        historyMode="yes"
         ></result-board>
       </div>
 

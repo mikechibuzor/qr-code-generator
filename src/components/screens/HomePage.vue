@@ -101,7 +101,7 @@ export default {
     },
 
   },
-  
+
   mounted() {
     axios
       .get(

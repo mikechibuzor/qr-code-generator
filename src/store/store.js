@@ -16,9 +16,13 @@ const store = createStore({
     },
     removeHistory(state, historyId) {
       const newHistory = state.history.filter(
-        (history) => historyId !== history
+        (history) => history.id !== historyId
       );
-      state.history = [...newHistory];
+      console.log(state.history);
+      return (state.history = [...newHistory]);
+    },
+    resetHistory(state) {
+      return (state.history = []);
     },
   },
   actions: {

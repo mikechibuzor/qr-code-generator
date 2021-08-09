@@ -1,6 +1,6 @@
 <template>
   <header class="flex items-center justify-center py-10">
-      <h1 :class="{ relative: text === 'History'}" class="text-xl xl:text-3xl font-bold tracking-widest">
+      <h1 :class="{ relativee: text === 'History' }" class="text-xl xl:text-3xl font-bold tracking-widest">
         {{ text }}
       </h1>
   </header>
@@ -8,15 +8,15 @@
 
 <script>
 export default {
-    props:['text']
+    props:['text'],
 }
 </script>
 
 <style scoped>
-.relative{
+.relativee{
   position: relative;
 }
-/* h1::before{
+h1.relativee::before{
  position: absolute;
  content: '';
  height: .2rem;
@@ -25,5 +25,5 @@ export default {
  right: 30%;
  bottom: -.5rem;
  background-color:#8d2828; 
-} */
+}
 </style>
