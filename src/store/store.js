@@ -24,8 +24,8 @@ const store = createStore({
     },
   },
   mutations: {
-    addHistory(state, historyObject) {
-      return state.history.push(historyObject);
+    addHistory(state, payload) {
+      return state.history.push(payload);
     },
     removeHistory(state, historyId) {
       const newHistory = state.history.filter(
@@ -35,10 +35,10 @@ const store = createStore({
     },
   },
   actions: {
-    addHistory({ commit }, payload) {
+    addHistoryObj({ commit }, payload) {
       commit("addHistory", payload);
     },
-    removeHistory({ commit }, payload) {
+    removeHistoryObj({ commit }, payload) {
       commit("removeHistory", payload);
     },
   },

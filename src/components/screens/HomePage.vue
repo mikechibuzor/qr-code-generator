@@ -2,7 +2,7 @@
   <div class="wrapper h-screen w-screen">
     <!-- Nav Starts -->
     <nav-bar move="history"></nav-bar>
-     <!-- Nav Ends -->
+    <!-- Nav Ends -->
 
     <!-- Header Starts -->
     <the-head text="URL-QR CODE GENERATOR"></the-head>
@@ -26,26 +26,28 @@
     </form>
     <!-- Form Ends -->
 
-    <transition name="slide-in">
-      <!-- QR Result Starts -->
-      <div class="result-container flex items-center justify-center">
-        <result-board :userUrl="userEnteredUrl" v-if="showResult"></result-board>
-      </div>  
-    </transition>
+    <!-- QR Result Starts -->
+    <div class="result-container flex items-center justify-center">
+      <transition name="slide-in">
+        <result-board
+          :userUrl="userEnteredUrl"
+          v-if="showResult"
+        ></result-board>
+      </transition>
+    </div>
   </div>
 </template>
 
 <script>
-
 import axios from "axios";
-import NavBar from '../layout/NavBar.vue';
-import TheHead from '../layout/TheHead.vue';
-import ResultBoard from '../layout/ResultBoard.vue';
-import { mapActions } from 'vuex';
-import { mapGetters } from 'vuex';
+import NavBar from "../layout/NavBar.vue";
+import TheHead from "../layout/TheHead.vue";
+import ResultBoard from "../layout/ResultBoard.vue";
+import { mapActions, mapGetters } from "vuex";
+
 
 export default {
-  components:{
+  components: {
     NavBar,
     TheHead,
     ResultBoard,
@@ -54,59 +56,57 @@ export default {
     return {
       showResult: false,
       imgSource: null,
-      userEnteredUrl: '',
+      userEnteredUrl: "",
       downloadUrl: null,
     };
   },
   methods: {
+    ...mapActions(["addHistoryObj", "removeHist"]),
     showResultHandler() {
       this.qrCodeImageSource();
       this.showResult = true;
     },
-    qrCodeImageSource(){
-        if(this.userEnteredUrl){
-          const historyObject = {
-            url: `https://qrtag.net/api/qr_50.png?url=https://${this.userEnteredUrl}`,
-            id: this.fetchHistory.length
-          };
-          console.log(this.fetchHistory);
-          this.removeHistory(3);
-          this.addHistory(historyObject);
-     
-          this.imgSource = `https://qrtag.net/api/qr_50.png?url=https://${this.userEnteredUrl}`;
-        }
-        return this.imgSource;
-    }
-  },
-  computed:{
-    ...mapActions(
-      ['addHistory']
-    ),
-     ...mapGetters({
-      fetchHistory: 'getHistory'
-    }),
-      embedQrImgSource(){
-          return this.imgSource;
-      },
-      downloadImgSource(){
-        return this.downloadUrl;
+    qrCodeImageSource() {
+      if (this.userEnteredUrl) {
+        const historyObject = {
+          id: this.fetchHistory.length,
+          userEnteredUrl: this.userEnteredUrl,
+          imgUrl: `https://qrtag.net/api/qr_50.png?url=https://${this.userEnteredUrl}`,          
+        };
+        this.addHistoryObj(historyObject);      
+
+        this.imgSource = this.fetchHistory[this.fetchHistory.length - 1];
       }
+      return this.imgSource;
+    },
   },
- mounted() {
-    axios.get("https://young-falls-95531.herokuapp.com/https://www.qrtag.net/api/qr_4.png?url=https://nairaland.com" )
+  computed: {
+    ...mapGetters({
+      fetchHistory: "getHistory",
+    }),
+    embedQrImgSource() {
+      return this.imgSource;
+    },
+    downloadImgSource() {
+      return this.downloadUrl;
+    },
+  },
+  mounted() {
+    axios
+      .get(
+        "https://young-falls-95531.herokuapp.com/https://www.qrtag.net/api/qr_4.png?url=https://nairaland.com"
+      )
       .then((response) => {
         console.log(response);
-      })
+      });
   },
 };
 </script>
 
-<style >
+<style>
 .wrapper {
   background-color: #ffeac9;
 }
-
-
 
 form {
   width: 40%;
@@ -127,7 +127,7 @@ form input:active {
   color: white;
 }
 
-.result-container{
+.result-container {
   margin: auto;
   width: 30%;
 }
