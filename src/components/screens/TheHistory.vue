@@ -5,7 +5,12 @@
       <the-head text="History"></the-head>
 
       <div class="result-containerr  px-16 py-6 gap-5 grid place-items-center grid-cols-1 xl:grid-cols-3">
-        <result-board v-for="history in fetchHistory" :key="history.id"></result-board>
+        <result-board 
+        v-for="history in fetchHistory"
+        :key="history.id"
+        :userUrl="history.userEnteredUrl"
+        :imgSrc="history.imgUrl"
+        ></result-board>
       </div>
 
   </div>

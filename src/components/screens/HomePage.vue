@@ -31,6 +31,7 @@
       <transition name="slide-in">
         <result-board
           :userUrl="userEnteredUrl"
+          :imgSrc="imgSource"
           v-if="showResult"
         ></result-board>
       </transition>
@@ -39,6 +40,7 @@
 </template>
 
 <script>
+
 import axios from "axios";
 import NavBar from "../layout/NavBar.vue";
 import TheHead from "../layout/TheHead.vue";
@@ -61,11 +63,14 @@ export default {
     };
   },
   methods: {
+
     ...mapActions(["addHistoryObj", "removeHist"]),
+
     showResultHandler() {
       this.qrCodeImageSource();
       this.showResult = true;
     },
+
     qrCodeImageSource() {
       if (this.userEnteredUrl) {
         const historyObject = {
@@ -75,22 +80,28 @@ export default {
         };
         this.addHistoryObj(historyObject);      
 
-        this.imgSource = this.fetchHistory[this.fetchHistory.length - 1];
+        this.imgSource = this.fetchHistory[this.fetchHistory.length - 1].imgUrl;
       }
       return this.imgSource;
     },
+
   },
   computed: {
+
     ...mapGetters({
       fetchHistory: "getHistory",
     }),
+
     embedQrImgSource() {
       return this.imgSource;
     },
+
     downloadImgSource() {
       return this.downloadUrl;
     },
+
   },
+  
   mounted() {
     axios
       .get(

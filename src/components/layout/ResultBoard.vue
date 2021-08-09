@@ -1,9 +1,13 @@
 <template>
   <div class="result-board flex flex-col items-center justify-center"  >
+
+        <!-- Generated QR Code Image goes here -->
         <div class="QR-Code-Image flex items-center justify-center  w-full h-56 rounded-md  shadow-lg mb-5">
-          <img v-if="userUrl" class="w-full h-full"  alt="qr-code image"/>
+          <img v-if="userUrl" class="w-full h-full" :src="imgSrc" alt="qr-code image"/>
           <p v-else class="text-sm xl:text-base text-center text-white">Please enter a url in the input field </p>
         </div>
+
+        <!-- Buttons -->
         <div
           class="buttons mt-4 xl:mt-0 flex items-center justify-between px-4"
         >
@@ -24,7 +28,10 @@
 
 <script>
 export default {
-  props:['userUrl'],
+  props:['userUrl', 'imgSrc'],
+  created(){
+    console.log(this.imgSrc, this.userUrl);
+  }
  
 }
 </script>

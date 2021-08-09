@@ -2,20 +2,7 @@ import { createStore } from "vuex";
 const store = createStore({
   state() {
     return {
-      history: [
-        {
-          id: 1,
-          userEnteredUrl: "",
-        },
-        {
-          id: 2,
-          userEnteredUrl: "",
-        },
-        {
-          id: 2,
-          userEnteredUrl: "",
-        },
-      ],
+      history: [],
     };
   },
   getters: {
