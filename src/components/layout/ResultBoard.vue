@@ -1,7 +1,7 @@
 <template>
   <div class="result-board flex flex-col items-center justify-center"  >
         <div class="QR-Code-Image flex items-center justify-center  w-full h-56 rounded-md  shadow-lg mb-5">
-          <img v-if="userUrl" class="w-full h-full" :src="embedQrImgSource" alt="qr-code image"/>
+          <img v-if="userUrl" class="w-full h-full"  alt="qr-code image"/>
           <p v-else class="text-sm xl:text-base text-center text-white">Please enter a url in the input field </p>
         </div>
         <div
@@ -55,7 +55,7 @@ button.grn {
 
 @media screen and (max-width: 768px) {
   .result-board {
-    width: 85%;
+    width: 100%;
   }
 }
 </style>

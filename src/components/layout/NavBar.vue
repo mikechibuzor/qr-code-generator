@@ -6,14 +6,14 @@
         class="relative cursor-pointer tracking-widest flex items-center justify-center"
         >
         <span>
-            <svg v-if=" move === 'home'"  class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg v-if=" move === 'home'"  class="h-3 xl:h-6  xl:w-6 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
             </svg>
-            <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-3 xl:h-6  xl:w-6 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
         </span>
-        <span>{{ move }}</span>
+        <span class="text-xs xl:text-base">{{ move }}</span>
       </router-link>
     </nav>
    
@@ -36,7 +36,7 @@ nav a::after {
   width: 0.4rem;
   border-radius: 50%;
   background: #8d2828;
-  bottom: -0.2rem;
+  bottom: -0.4rem;
   left: 45%;
   transition: all 0.2s ease-in;
 }

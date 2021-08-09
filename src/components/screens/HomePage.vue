@@ -5,7 +5,7 @@
      <!-- Nav Ends -->
 
     <!-- Header Starts -->
-      <the-head text="URL-QR CODE GENERATOR"></the-head>
+    <the-head text="URL-QR CODE GENERATOR"></the-head>
     <!-- Header Ends -->
 
     <!-- Form starts -->
@@ -41,6 +41,8 @@ import axios from "axios";
 import NavBar from '../layout/NavBar.vue';
 import TheHead from '../layout/TheHead.vue';
 import ResultBoard from '../layout/ResultBoard.vue';
+import { mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   components:{
@@ -63,12 +65,26 @@ export default {
     },
     qrCodeImageSource(){
         if(this.userEnteredUrl){
+          const historyObject = {
+            url: `https://qrtag.net/api/qr_50.png?url=https://${this.userEnteredUrl}`,
+            id: this.fetchHistory.length
+          };
+          console.log(this.fetchHistory);
+          this.removeHistory(3);
+          this.addHistory(historyObject);
+     
           this.imgSource = `https://qrtag.net/api/qr_50.png?url=https://${this.userEnteredUrl}`;
         }
         return this.imgSource;
     }
   },
   computed:{
+    ...mapActions(
+      ['addHistory']
+    ),
+     ...mapGetters({
+      fetchHistory: 'getHistory'
+    }),
       embedQrImgSource(){
           return this.imgSource;
       },

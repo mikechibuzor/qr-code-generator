@@ -4,9 +4,10 @@
       <nav-bar move="home"></nav-bar>
       <the-head text="History"></the-head>
 
-      <div class="result-containerr px-16 py-6 gap-5 grid grid-cols-1 xl:grid-cols-3">
-        <result-board v-for="index in 10" :key="index"></result-board>
+      <div class="result-containerr  px-16 py-6 gap-5 grid place-items-center grid-cols-1 xl:grid-cols-3">
+        <result-board v-for="history in fetchHistory" :key="history.id"></result-board>
       </div>
+
   </div>
 </template>
 
@@ -15,12 +16,18 @@
 import NavBar from '../layout/NavBar.vue';
 import TheHead from '../layout/TheHead.vue';
 import ResultBoard from '../layout/ResultBoard.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   components:{
     NavBar,
     TheHead,
     ResultBoard,
+  },
+  computed:{
+    ...mapGetters({
+      fetchHistory: 'getHistory'
+    })
   }
 }
 </script>
