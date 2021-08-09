@@ -16,7 +16,7 @@
               Download QR Code
             </button>            
           </a>
-          <button
+          <button v-if="historyMode"
             class="xl:px-4 px-2.5 text-xs xl:text-base flex items-center rd py-1.5 text-white opacity-90 rounded-sm xl:rounded-md shadow-md" 
             disabled = "true" 
             @click="removeQrImage"
