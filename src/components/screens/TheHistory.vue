@@ -17,7 +17,7 @@
       <nav-bar move="home"></nav-bar>
       <the-head text="History"></the-head>
 
-      <div class="result-containerr  px-16 py-6 gap-8 grid place-items-center grid-cols-1 xl:grid-cols-3">
+      <div class="result-containerr  px-16 py-6 gap-12 grid place-items-center grid-cols-1 xl:grid-cols-3">
         <result-board 
         v-for="history in fetchHistory"
         :key="history.id"

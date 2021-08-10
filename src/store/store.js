@@ -4,6 +4,7 @@ const store = createStore({
     return {
       history: [],
       historyCounter: 0,
+      modalShow: false,
     };
   },
   getters: {
@@ -31,6 +32,9 @@ const store = createStore({
     increaseHistoryCounter(state) {
       return state.historyCounter++;
     },
+    modalShowToggle(state) {
+      state.modalShow = !state.modalShow;
+    },
   },
   actions: {
     addHistoryObj({ commit }, payload) {
@@ -44,6 +48,9 @@ const store = createStore({
     },
     historyReset({ commit }) {
       commit("resetHistory");
+    },
+    modalToggler({ commit }) {
+      commit("modalShowToggle");
     },
   },
 });

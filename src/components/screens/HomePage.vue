@@ -14,7 +14,7 @@
         v-model.trim="userEnteredUrl"
         class="px-5 outline-none border-none text-white py-3 rounded-md shadoown-md w-full"
         type="text"
-        placeholder="Enter URL here..."
+        placeholder="enter url here... (www.nairaland.com)"
       />
       <button
         :disabled="historyCounter >= 10"
@@ -38,6 +38,13 @@
         ></result-board>
       </transition>
     </div>
+
+    <!-- ModalDialogue -->
+      <modal-dialogue 
+
+        :show="showModal"
+        
+      ></modal-dialogue>
   </div>
 </template>
 
@@ -47,6 +54,7 @@ import axios from "axios";
 import NavBar from "../layout/NavBar.vue";
 import TheHead from "../layout/TheHead.vue";
 import ResultBoard from "../layout/ResultBoard.vue";
+import ModalDialogue from "../layout/ModalDialogue.vue";
 import { mapActions, mapGetters } from "vuex";
 
 
@@ -54,6 +62,7 @@ export default {
   components: {
     NavBar,
     TheHead,
+    ModalDialogue,
     ResultBoard,
   },
 
@@ -63,6 +72,7 @@ export default {
       imgSource: null,
       userEnteredUrl: "",
       downloadUrl: null,
+      show: false,
     };
   },
 
@@ -74,6 +84,10 @@ export default {
       if(this.historyCounter <= 10){
           this.qrCodeImageSource();
           this.showResult = true;
+      }
+      else{
+        console.log('got here');
+        this.show = true;
       }
 
     },
@@ -115,7 +129,8 @@ export default {
 
     ...mapGetters({
       fetchHistory: "getHistory",
-      historyCounter: 'getHistoryCounter'
+      historyCounter: 'getHistoryCounter',
+      showModal: 'modalToggler'
     }),
 
     embedQrImgSource() {
@@ -129,6 +144,9 @@ export default {
       return{
         'disable-button': this.historyCounter === 10
       }
+    },
+    showC(){
+      return this.show;
     }
 
   },
@@ -156,7 +174,7 @@ form {
 }
 
 form input {
-  background-color: rgba(118, 130, 122, 0.76);
+  background-color: rgba(105, 110, 107, 0.884);
   transition: all 0.25s ease-out;
 }
 
@@ -165,9 +183,6 @@ form input:active {
   background-color: rgb(228, 182, 182);
 }
 
-::placeholder {
-  color: white;
-}
 
 .result-container {
   margin: auto;
