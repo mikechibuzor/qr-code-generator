@@ -25,7 +25,8 @@ const store = createStore({
       return (state.history = [...newHistory]);
     },
     resetHistory(state) {
-      return (state.history = []);
+      state.historyCounter = 0;
+      state.history = [];
     },
     increaseHistoryCounter(state) {
       return state.historyCounter++;
