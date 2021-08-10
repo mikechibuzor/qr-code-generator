@@ -12,7 +12,7 @@ const store = createStore({
   },
   mutations: {
     addHistory(state, payload) {
-      return state.history.push(payload);
+      return state.history.unshift(payload);
     },
     removeHistory(state, historyId) {
       const newHistory = state.history.filter(

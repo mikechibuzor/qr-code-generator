@@ -30,10 +30,22 @@ export default {
     TheHead,
     ResultBoard,
   },
+  methods:{
+    reverseFetchedHistoryHandler(){
+     const fetchedHistory = this.fetchHistory;
+     const reversedHistory = fetchedHistory.reverse();
+     console.log(reversedHistory);
+     return reversedHistory; 
+    }
+  },
   computed:{
     ...mapGetters({
       fetchHistory: 'getHistory'
-    })
+    }),
+    reversedFetchedHistory(){
+      console.log(this.reverseFetchedHistoryHandler())
+      return this.reverseFetchedHistoryHandler();
+    }
   }
 }
 </script>

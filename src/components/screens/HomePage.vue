@@ -54,6 +54,7 @@ export default {
     TheHead,
     ResultBoard,
   },
+
   data() {
     return {
       showResult: false,
@@ -62,6 +63,7 @@ export default {
       downloadUrl: null,
     };
   },
+
   methods: {
 
     ...mapActions(["addHistoryObj", "removeHist"]),
@@ -69,23 +71,41 @@ export default {
     showResultHandler() {
       this.qrCodeImageSource();
       this.showResult = true;
+
+      const testShow = this.fetchHistory;
+      console.log(testShow);
     },
 
     qrCodeImageSource() {
+      // if a url is entered
       if (this.userEnteredUrl) {
+        /* --------
+            Regex check to help remove 'http(s) prefix as i noticed that it gives an error
+            when it is attached to the entered url
+            -------
+        */
+        const regexHttpCheck = /https?:\/\//gi;
+        this.userEnteredUrlTrimmed = this.userEnteredUrl.replace(regexHttpCheck, '');
+        console.log(this.userEnteredUrl);
+        
         const historyObject = {
           id: this.fetchHistory.length,
           userEnteredUrl: this.userEnteredUrl,
-          imgUrl: `https://qrtag.net/api/qr_50.png?url=https://${this.userEnteredUrl}`,          
+          imgUrl: `https://qrtag.net/api/qr_50.png?url=https://${this.userEnteredUrlTrimmed}`,          
         };
         this.addHistoryObj(historyObject);      
 
+        /* ----- 
+            logic here is that the result board on the homepage always show the last entered url
+        */
         this.imgSource = this.fetchHistory[this.fetchHistory.length - 1].imgUrl;
+  
       }
       return this.imgSource;
     },
 
   },
+
   computed: {
 
     ...mapGetters({
