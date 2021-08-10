@@ -4,7 +4,7 @@
         <!-- Generated QR Code Image goes here -->
         <div class="QR-Code-Image flex items-center justify-center  w-full h-56 rounded-md  shadow-lg mb-5">
           <img v-if="userUrl" class="w-full h-full" :src="imgSrc" alt="qr-code image"/>
-          <p v-else class="text-sm xl:text-base text-center text-white">Please enter a url in the input field </p>
+          <p v-else class="error-msg text-sm xl:text-base text-center text-white">Please enter a url in the input field </p>
         </div>
 
         <!-- Buttons -->
@@ -62,6 +62,11 @@ button.rd {
 button {
   opacity: 0.87;
   transition: all 0.3s ease-in;
+}
+
+button,
+p.error-msg{
+  color: white !important;
 }
 
 button:hover {

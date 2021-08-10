@@ -17,7 +17,7 @@
         placeholder="enter url here... (www.nairaland.com)"
       />
       <button
-        :disabled="historyCounter >= 10"
+       
         :class="attachDisableClass"
         @click.prevent="showResultHandler"
         class="xl:px-8 px-3 text-sm xl:text-base rd py-2 mb-8 text-white mt-6 opacity-90 rounded-md shadow-md"
@@ -40,11 +40,7 @@
     </div>
 
     <!-- ModalDialogue -->
-      <modal-dialogue 
-
-        :show="showModal"
-        
-      ></modal-dialogue>
+      <modal-dialogue  ></modal-dialogue>
   </div>
 </template>
 
@@ -72,22 +68,20 @@ export default {
       imgSource: null,
       userEnteredUrl: "",
       downloadUrl: null,
-      show: false,
     };
   },
 
   methods: {
 
-    ...mapActions(["addHistoryObj", "removeHist", "historyCounterIncrease"]),
+    ...mapActions(["addHistoryObj", "removeHist", "historyCounterIncrease", "modalToggler"]),
 
     showResultHandler() {
-      if(this.historyCounter <= 10){
+      if(this.historyCounter <= 9){
           this.qrCodeImageSource();
           this.showResult = true;
       }
-      else{
-        console.log('got here');
-        this.show = true;
+      if(this.historyCounter >= 10){
+        this.modalToggler();
       }
 
     },
@@ -130,7 +124,6 @@ export default {
     ...mapGetters({
       fetchHistory: "getHistory",
       historyCounter: 'getHistoryCounter',
-      showModal: 'modalToggler'
     }),
 
     embedQrImgSource() {
@@ -145,10 +138,6 @@ export default {
         'disable-button': this.historyCounter === 10
       }
     },
-    showC(){
-      return this.show;
-    }
-
   },
 
   mounted() {
@@ -163,7 +152,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 .wrapper {
   background-color: #ffeac9;
 }

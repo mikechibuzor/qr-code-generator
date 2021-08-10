@@ -14,6 +14,9 @@ const store = createStore({
     getHistoryCounter(state) {
       return state.historyCounter;
     },
+    showModal(state) {
+      return state.modalShow;
+    },
   },
   mutations: {
     addHistory(state, payload) {
