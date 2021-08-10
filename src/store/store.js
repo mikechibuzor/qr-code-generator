@@ -3,11 +3,15 @@ const store = createStore({
   state() {
     return {
       history: [],
+      historyCounter: 0,
     };
   },
   getters: {
     getHistory(state) {
       return state.history;
+    },
+    getHistoryCounter(state) {
+      return state.historyCounter;
     },
   },
   mutations: {
@@ -18,11 +22,13 @@ const store = createStore({
       const newHistory = state.history.filter(
         (history) => history.id !== historyId
       );
-      console.log(state.history);
       return (state.history = [...newHistory]);
     },
     resetHistory(state) {
       return (state.history = []);
+    },
+    increaseHistoryCounter(state) {
+      return state.historyCounter++;
     },
   },
   actions: {
@@ -31,6 +37,12 @@ const store = createStore({
     },
     removeHistoryObj({ commit }, payload) {
       commit("removeHistory", payload);
+    },
+    historyCounterIncrease({ commit }) {
+      commit("increaseHistoryCounter");
+    },
+    historyReset({ commit }) {
+      commit("resetHistory");
     },
   },
 });

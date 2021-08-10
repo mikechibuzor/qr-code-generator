@@ -17,6 +17,8 @@
         placeholder="Enter URL here..."
       />
       <button
+        :disabled="historyCounter >= 10"
+        :class="attachDisableClass"
         @click.prevent="showResultHandler"
         class="xl:px-8 px-3 text-sm xl:text-base rd py-2 mb-8 text-white mt-6 opacity-90 rounded-md shadow-md"
         type="submit"
@@ -66,21 +68,21 @@ export default {
 
   methods: {
 
-    ...mapActions(["addHistoryObj", "removeHist"]),
+    ...mapActions(["addHistoryObj", "removeHist", "historyCounterIncrease"]),
 
     showResultHandler() {
-      this.qrCodeImageSource();
-      this.showResult = true;
+      if(this.historyCounter <= 10){
+          this.qrCodeImageSource();
+          this.showResult = true;
+      }
 
-      const testShow = this.fetchHistory;
-      console.log(testShow);
     },
 
     qrCodeImageSource() {
       // if a url is entered
       if (this.userEnteredUrl) {
         /* --------
-            Regex check to help remove 'http(s) prefix as i noticed that it gives an error
+            Regex check to help remove 'http(s):// prefix as i noticed that it gives an error
             when it is attached to the entered url
             -------
         */
@@ -99,6 +101,9 @@ export default {
             logic here is that the result board on the homepage always show the last entered url
         */
         this.imgSource = this.fetchHistory[this.fetchHistory.length - 1].imgUrl;
+
+        // increase history counter by 1
+        this.historyCounterIncrease();
   
       }
       return this.imgSource;
@@ -110,6 +115,7 @@ export default {
 
     ...mapGetters({
       fetchHistory: "getHistory",
+      historyCounter: 'getHistoryCounter'
     }),
 
     embedQrImgSource() {
@@ -119,6 +125,11 @@ export default {
     downloadImgSource() {
       return this.downloadUrl;
     },
+    attachDisableClass(){
+      return{
+        'disable-button': this.historyCounter === 10
+      }
+    }
 
   },
 
@@ -163,6 +174,13 @@ form input:active {
   width: 30%;
 }
 
+/* disable button class */
+/* for some reason, the disabled attribute is working on the button */
+.disable-button{
+  /* pointer-events: none; */
+  cursor: not-allowed;
+  opacity: .65;
+}
 /* animation for result slide in */
 @keyframes slide-in {
   0% {

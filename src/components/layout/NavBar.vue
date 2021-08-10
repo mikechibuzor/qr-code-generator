@@ -1,6 +1,6 @@
 <template>
     
-    <nav class="flex justify-end items-center px-8 py-3  ">
+    <nav class="flex  items-center px-8 py-3  " :class="{'justify-end': move === 'history'} ">
       <router-link
         :to="move"
         class="relative cursor-pointer tracking-widest flex items-center justify-center"

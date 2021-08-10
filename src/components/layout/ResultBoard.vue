@@ -1,5 +1,5 @@
 <template>
-  <div class="result-board w-full flex flex-col items-center justify-center relative mb-10 xl:mb-0"  >
+  <div class="result-board w-full flex flex-col items-center justify-center relative mb-10 "  >
 
         <!-- Generated QR Code Image goes here -->
         <div class="QR-Code-Image flex items-center justify-center  w-full h-56 rounded-md  shadow-lg mb-5">
