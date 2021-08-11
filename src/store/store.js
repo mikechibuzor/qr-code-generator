@@ -45,6 +45,7 @@ const store = createStore({
     },
     removeHistoryObj({ commit }, payload) {
       commit("removeHistory", payload);
+
     },
     historyCounterIncrease({ commit }) {
       commit("increaseHistoryCounter");

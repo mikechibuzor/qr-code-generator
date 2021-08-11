@@ -11,9 +11,9 @@
         <div
           class="buttons mt-4 xl:mt-0 flex items-center justify-between px-4"
         >
-          <a href="" target="_blank" download="qr-code-image" >
+          <a :href="imgSrc" target="_blank">
             <button @click="removeQrImage" class="xl:px-4 px-2.5 text-xs xl:text-base  grn py-1.5  text-white opacity-90 rounded-sm xl:rounded-md shadow-md  mr-5">
-              Download QR Code
+              Get QR Code
             </button>            
           </a>
           <button v-if="historyMode"
