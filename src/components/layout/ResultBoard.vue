@@ -11,15 +11,13 @@
         <div
           class="buttons mt-4 xl:mt-0 flex items-center justify-between px-4"
         >
-          <a :href="imgSrc" target="_blank">
+          <a :href="imgSrc" target="_blank" width="400" height="400">
             <button @click="removeQrImage" class="xl:px-4 px-2.5 text-xs xl:text-base  grn py-1.5  text-white opacity-90 rounded-sm xl:rounded-md shadow-md  mr-5">
               Get QR Code
             </button>            
           </a>
-          <button v-if="historyMode"
-            class="xl:px-4 px-2.5 text-xs xl:text-base flex items-center rd py-1.5 text-white opacity-90 rounded-sm xl:rounded-md shadow-md" 
-            
-            @click="removeQrImage"
+          <button @click="removeQrImageHandler" v-if="historyMode"
+            class="xl:px-4 px-2.5 text-xs xl:text-base flex items-center rd py-1.5 text-white opacity-90 rounded-sm xl:rounded-md shadow-md"  
           >
               <span class="mr-2">
                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -40,15 +38,18 @@
 <script>
 import { mapActions } from 'vuex';
 export default {
-  props:['userUrl', 'imgSrc', 'historyMode'],
+  props:['userUrl', 'imgSrc', 'historyMode', 'id'],
   methods:{
     ...mapActions({
-      removeQrImage: 'removeHistoryObj'
+      removeQrImage: 'removeHistoryObj',
+      decreaseHistoryCounter: 'historyCounterDecrease'
     }),
-    removeQrImages(){
-      console.log('gooot heeeree');
+    removeQrImageHandler(){
+      this.decreaseHistoryCounter();
+      this.removeQrImage(this.id);
     }
   },
+ 
 
  
 }

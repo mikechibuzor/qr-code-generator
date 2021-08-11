@@ -35,6 +35,9 @@ const store = createStore({
     increaseHistoryCounter(state) {
       return state.historyCounter++;
     },
+    decreaseHistoryCounter(state) {
+      return state.historyCounter--;
+    },
     modalShowToggle(state) {
       state.modalShow = !state.modalShow;
     },
@@ -45,10 +48,12 @@ const store = createStore({
     },
     removeHistoryObj({ commit }, payload) {
       commit("removeHistory", payload);
-
     },
     historyCounterIncrease({ commit }) {
       commit("increaseHistoryCounter");
+    },
+    historyCounterDecrease({ commit }) {
+      commit("decreaseHistoryCounter");
     },
     historyReset({ commit }) {
       commit("resetHistory");

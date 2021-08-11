@@ -96,7 +96,6 @@ export default {
         */
         const regexHttpCheck = /https?:\/\//gi;
         this.userEnteredUrlTrimmed = this.userEnteredUrl.replace(regexHttpCheck, '');
-        console.log(this.userEnteredUrl);
         
         const historyObject = {
           id: this.fetchHistory.length,

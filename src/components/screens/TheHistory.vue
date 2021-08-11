@@ -21,6 +21,7 @@
         <result-board 
         v-for="history in fetchHistory"
         :key="history.id"
+        :id="history.id"
         :userUrl="history.userEnteredUrl"
         :imgSrc="history.imgUrl"
         historyMode="yes"
