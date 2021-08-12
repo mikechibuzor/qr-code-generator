@@ -22,6 +22,7 @@
         v-for="history in fetchHistory"
         :key="history.id"
         :id="history.id"
+        :validation='history.validation'
         :userUrl="history.userEnteredUrl"
         :imgSrc="history.imgUrl"
         historyMode="yes"

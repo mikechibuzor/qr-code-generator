@@ -92,8 +92,6 @@ export default {
     },
     qrCodeImageSource() {
       const validateUrl = this.validateEnteredUrl(this.userEnteredUrl);
-      console.log(validateUrl);
-      console.log(this.userEnteredUrl);
       // if a url is entered
       if (validateUrl) {
         /* --------
@@ -107,7 +105,8 @@ export default {
         const historyObject = {
           id: this.fetchHistory.length,
           userEnteredUrl: this.userEnteredUrl,
-          imgUrl: `https://qrtag.net/api/qr_50.png?url=https://${this.userEnteredUrlTrimmed}`,          
+          imgUrl: `https://qrtag.net/api/qr_50.png?url=https://${this.userEnteredUrlTrimmed}`,
+          validation: validateUrl          
         };
         this.addHistoryObj(historyObject);      
 
