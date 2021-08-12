@@ -49,10 +49,6 @@ export default {
       this.removeQrImage(this.id);
     }
   },
-  created(){
-    console.log(this.validatee, this.userUrl);
-  }
- 
 
  
 }

@@ -148,15 +148,15 @@ export default {
     },
   },
 
-  mounted() {
-    axios
-      .get(
-        "https://young-falls-95531.herokuapp.com/https://www.qrtag.net/api/qr_4.png?url=https://nairaland.com"
-      )
-      .then((response) => {
-        console.log(response);
-      });
-  },
+  // mounted() {
+  //   axios
+  //     .get(
+  //       "https://young-falls-95531.herokuapp.com/https://www.qrtag.net/api/qr_4.png?url=https://nairaland.com"
+  //     )
+  //     .then((response) => {
+  //       console.log(response);
+  //     });
+  // },
 };
 </script>
 
