@@ -34,6 +34,7 @@
         <result-board
           :userUrl="userEnteredUrl"
           :imgSrc="imgSource"
+          :validatee="validatit"
           v-if="showResult"
         ></result-board>
       </transition>
@@ -68,6 +69,7 @@ export default {
       imgSource: null,
       userEnteredUrl: "",
       downloadUrl: null,
+      validatit: null,
     };
   },
 
@@ -110,6 +112,7 @@ export default {
         };
         this.addHistoryObj(historyObject);      
 
+        this.validatit = this.fetchHistory[this.fetchHistory.length - 1].validation;
         /* ----- 
             logic here is that the result board on the homepage always show the last entered url
         */

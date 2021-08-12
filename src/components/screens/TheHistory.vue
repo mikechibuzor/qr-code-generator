@@ -22,7 +22,7 @@
         v-for="history in fetchHistory"
         :key="history.id"
         :id="history.id"
-        :validation='history.validation'
+        :validatee="history.validation"
         :userUrl="history.userEnteredUrl"
         :imgSrc="history.imgUrl"
         historyMode="yes"
@@ -62,6 +62,9 @@ export default {
       console.log(this.reverseFetchedHistoryHandler())
       return this.reverseFetchedHistoryHandler();
     }
+  },
+  mounted(){
+    console.log(this.fetchHistory[0].validation);
   }
 }
 </script>

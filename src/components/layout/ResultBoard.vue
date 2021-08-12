@@ -3,7 +3,7 @@
 
         <!-- Generated QR Code Image goes here -->
         <div class="QR-Code-Image flex items-center justify-center  w-full h-56 rounded-md  shadow-lg mb-5">
-          <img v-if="validation" class="w-full h-full" :src="imgSrc" alt="qr-code image"/>
+          <img v-if="validatee" class="w-full h-full" :src="imgSrc" alt="qr-code image"/>
           <p v-else class="error-msg text-sm xl:text-base text-center text-white">Please enter a valid url in the input field </p>
         </div>
 
@@ -38,7 +38,7 @@
 <script>
 import { mapActions } from 'vuex';
 export default {
-  props:['userUrl', 'imgSrc', 'historyMode', 'id', 'validation'],
+  props:['validatee','userUrl', 'imgSrc', 'historyMode', 'id'],
   methods:{
     ...mapActions({
       removeQrImage: 'removeHistoryObj',
@@ -49,6 +49,9 @@ export default {
       this.removeQrImage(this.id);
     }
   },
+  created(){
+    console.log(this.validatee, this.userUrl);
+  }
  
 
  
