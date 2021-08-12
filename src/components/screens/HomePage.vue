@@ -85,10 +85,17 @@ export default {
       }
 
     },
-
+    validateEnteredUrl(enteredUrl){
+     const expression =  /^((https?):\/\/)?(([w|W]{3}.)?)+[a-zA-Z0-9\-.]{3,}.[a-zA-Z]{2,}(.[a-zA-Z]{2,})?$/;
+     const result = expression.test(enteredUrl);
+     return result;
+    },
     qrCodeImageSource() {
+      const validateUrl = this.validateEnteredUrl(this.userEnteredUrl);
+      console.log(validateUrl);
+      console.log(this.userEnteredUrl);
       // if a url is entered
-      if (this.userEnteredUrl) {
+      if (validateUrl) {
         /* --------
             Regex check to help remove 'http(s):// prefix as i noticed that it gives an error
             when it is attached to the entered url
