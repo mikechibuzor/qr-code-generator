@@ -50,7 +50,6 @@ export default {
     reverseFetchedHistoryHandler(){
      const fetchedHistory = this.fetchHistory;
      const reversedHistory = fetchedHistory.reverse();
-     console.log(reversedHistory);
      return reversedHistory; 
     }
   },
@@ -63,9 +62,6 @@ export default {
       return this.reverseFetchedHistoryHandler();
     }
   },
-  mounted(){
-    console.log(this.fetchHistory[0].validation);
-  }
 }
 </script>
 

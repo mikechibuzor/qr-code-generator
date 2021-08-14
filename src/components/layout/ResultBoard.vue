@@ -1,23 +1,23 @@
 <template>
-  <div class="result-board w-full flex flex-col items-center justify-center relative mb-10 "  >
+  <div class="result-board  flex flex-col items-center justify-center relative mb-10 "  >
 
         <!-- Generated QR Code Image goes here -->
-        <div class="QR-Code-Image flex items-center justify-center  w-full h-56 rounded-md  shadow-lg mb-5">
+        <div class="QR-Code-Image flex items-center justify-center  h-56 rounded-md  shadow-lg mb-5">
           <img v-if="validatee" class="w-full h-full" :src="imgSrc" alt="qr-code image"/>
           <p v-else class="error-msg text-sm xl:text-base text-center text-white">Please enter a valid url in the input field </p>
         </div>
 
         <!-- Buttons -->
         <div
-          class="buttons mt-4 xl:mt-0 flex items-center justify-between px-4"
+          class="buttons  mt-4 xl:mt-0 flex items-center justify-between px-4"
         >
           <a :href="imgSrc" target="_blank" width="400" height="400">
-            <button @click="removeQrImage" class="xl:px-4 px-2.5 text-xs xl:text-base  grn py-1.5  text-white opacity-90 rounded-sm xl:rounded-md shadow-md  mr-5">
+            <button @click="removeQrImage" class="xl:px-4 px-2.5 text-xs xl:text-base  grn py-1.5  text-white opacity-90 rounded-sm  shadow-md  mr-5">
               Get QR Code
             </button>            
           </a>
           <button @click="removeQrImageHandler" v-if="historyMode"
-            class="xl:px-4 px-2.5 text-xs xl:text-base flex items-center rd py-1.5 text-white opacity-90 rounded-sm xl:rounded-md shadow-md"  
+            class="xl:px-4 px-2.5 text-xs xl:text-base flex items-center rd py-1.5 text-white opacity-90 rounded-sm  shadow-md"  
           >
               <span class="mr-2">
                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -29,7 +29,7 @@
         </div>
 
         <!-- User Entered Url -->
-        <div class="user-entered-url absolute w-full -bottom-14 flex items-center justify-center px-4 py-1.5 left-0 right-0  italic">
+        <div class="user-entered-url absolute bg-blue-300 -bottom-14 flex items-center justify-center px-4 py-1.5 left-0 right-0  italic">
           <p>{{ userUrl }}</p>
         </div>
   </div>

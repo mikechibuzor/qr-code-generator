@@ -47,7 +47,7 @@
 
 <script>
 
-import axios from "axios";
+// import axios from "axios";
 import NavBar from "../layout/NavBar.vue";
 import TheHead from "../layout/TheHead.vue";
 import ResultBoard from "../layout/ResultBoard.vue";
@@ -183,7 +183,7 @@ form input:active {
 
 .result-container {
   margin: auto;
-  width: 30%;
+  width: 25%;
 }
 
 /* disable button class */
