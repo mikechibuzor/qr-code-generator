@@ -41,6 +41,9 @@ const store = createStore({
     modalShowToggle(state) {
       state.modalShow = !state.modalShow;
     },
+    modalShowToggleOff(state) {
+      state.modalShow = false;
+    },
   },
   actions: {
     addHistoryObj({ commit }, payload) {
@@ -48,6 +51,7 @@ const store = createStore({
     },
     removeHistoryObj({ commit }, payload) {
       commit("removeHistory", payload);
+      commit("modalShowToggleOff");
     },
     historyCounterIncrease({ commit }) {
       commit("increaseHistoryCounter");
