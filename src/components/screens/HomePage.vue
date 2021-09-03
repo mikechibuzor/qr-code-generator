@@ -1,4 +1,5 @@
 <template>
+
   <div class="wrapper h-screen w-screen">
     <!-- Nav Starts -->
     <nav-bar move="history"></nav-bar>
@@ -9,7 +10,7 @@
     <!-- Header Ends -->
 
     <!-- Form starts -->
-    <form class="flex flex-col    items-center justify-center py-5">
+    <form class="flex flex-col items-center justify-center py-5">
       <input
         v-model.trim="userEnteredUrl"
         class="px-5 outline-none border-none text-white py-3 rounded-md shadoown-md w-full"
@@ -17,11 +18,11 @@
         placeholder="enter url here... (www.nairaland.com)"
       />
       <button
-       
         :class="attachDisableClass"
         @click.prevent="showResultHandler"
         class="xl:px-8 px-3 text-sm xl:text-base rd py-2 mb-8 text-white mt-6 opacity-90 rounded-md shadow-md"
         type="submit"
+        data-test="button"
       >
         Generate QR Code
       </button>
@@ -41,19 +42,21 @@
     </div>
 
     <!-- ModalDialogue -->
-      <modal-dialogue  ></modal-dialogue>
+    <modal-dialogue></modal-dialogue>
+
+    <!-- For testing -->
+    <p data-test="test" class="for-testing">{{ forTest }}</p>
   </div>
+
 </template>
 
 <script>
 
-// import axios from "axios";
 import NavBar from "../layout/NavBar.vue";
 import TheHead from "../layout/TheHead.vue";
 import ResultBoard from "../layout/ResultBoard.vue";
 import ModalDialogue from "../layout/ModalDialogue.vue";
 import { mapActions, mapGetters } from "vuex";
-
 
 export default {
   components: {
@@ -68,29 +71,33 @@ export default {
       showResult: false,
       imgSource: null,
       userEnteredUrl: "",
-      downloadUrl: null,
       validatit: null,
     };
   },
 
   methods: {
-
-    ...mapActions(["addHistoryObj", "removeHist", "historyCounterIncrease", "modalToggler"]),
+    ...mapActions([
+      "addHistoryObj",
+      "removeHist",
+      "historyCounterIncrease",
+      "modalToggler",
+    ]),
 
     showResultHandler() {
-      if(this.historyCounter <= 9){
-          this.qrCodeImageSource();
-          this.showResult = true;
+      if (this.historyCounter <= 9) {
+        this.qrCodeImageSource();
+        this.showResult = true;
+        this.forTest = 'true';
       }
-      if(this.historyCounter >= 10){
+      if (this.historyCounter >= 10) {
         this.modalToggler();
+        this.forTest = 'false';
       }
-
     },
-    validateEnteredUrl(enteredUrl){
-     const expression =  /^((https?):\/\/)?(([w|W]{3}.)?)+[a-zA-Z0-9\-.]{3,}.[a-zA-Z]{2,}(.[a-zA-Z]{2,})?$/;
-     const result = expression.test(enteredUrl);
-     return result;
+    validateEnteredUrl(enteredUrl) {
+      const expression = /^((https?):\/\/)?(([w|W]{3}.)?)+[a-zA-Z0-9\-.]{3,}.[a-zA-Z]{2,}(.[a-zA-Z]{2,})?$/;
+      const result = expression.test(enteredUrl);
+      return result;
     },
     qrCodeImageSource() {
       const validateUrl = this.validateEnteredUrl(this.userEnteredUrl);
@@ -102,17 +109,22 @@ export default {
             -------
         */
         const regexHttpCheck = /https?:\/\//gi;
-        this.userEnteredUrlTrimmed = this.userEnteredUrl.replace(regexHttpCheck, '');
-        
+        this.userEnteredUrlTrimmed = this.userEnteredUrl.replace(
+          regexHttpCheck,
+          ""
+        );
+
         const historyObject = {
           id: this.fetchHistory.length,
           userEnteredUrl: this.userEnteredUrl,
           imgUrl: `https://qrtag.net/api/qr_50.png?url=https://${this.userEnteredUrlTrimmed}`,
-          validation: validateUrl          
+          validation: validateUrl,
         };
-        this.addHistoryObj(historyObject);      
+        this.addHistoryObj(historyObject);
 
-        this.validatit = this.fetchHistory[this.fetchHistory.length - 1].validation;
+        this.validatit = this.fetchHistory[
+          this.fetchHistory.length - 1
+        ].validation;
         /* ----- 
             logic here is that the result board on the homepage always show the last entered url
         */
@@ -120,31 +132,24 @@ export default {
 
         // increase history counter by 1
         this.historyCounterIncrease();
-  
       }
       return this.imgSource;
     },
-
   },
 
   computed: {
-
     ...mapGetters({
       fetchHistory: "getHistory",
-      historyCounter: 'getHistoryCounter',
+      historyCounter: "getHistoryCounter",
     }),
 
     embedQrImgSource() {
       return this.imgSource;
     },
-
-    downloadImgSource() {
-      return this.downloadUrl;
-    },
-    attachDisableClass(){
-      return{
-        'disable-button': this.historyCounter === 10
-      }
+    attachDisableClass() {
+      return {
+        "disable-button": this.historyCounter === 10,
+      };
     },
   },
 
@@ -160,7 +165,7 @@ export default {
 };
 </script>
 
-<style >
+<style>
 .wrapper {
   background-color: #ffeac9;
 }
@@ -180,7 +185,6 @@ form input:active {
   background-color: rgb(228, 182, 182);
 }
 
-
 .result-container {
   margin: auto;
   width: 25%;
@@ -188,10 +192,10 @@ form input:active {
 
 /* disable button class */
 /* for some reason, the disabled attribute is working on the button */
-.disable-button{
+.disable-button {
   /* pointer-events: none; */
   cursor: not-allowed;
-  opacity: .65;
+  opacity: 0.65;
 }
 /* animation for result slide in */
 @keyframes slide-in {
