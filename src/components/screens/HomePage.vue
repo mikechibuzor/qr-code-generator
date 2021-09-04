@@ -72,6 +72,7 @@ export default {
       imgSource: null,
       userEnteredUrl: "",
       validatit: null,
+      forTest: '',
     };
   },
 
@@ -87,11 +88,13 @@ export default {
       if (this.historyCounter <= 9) {
         this.qrCodeImageSource();
         this.showResult = true;
-        this.forTest = 'true';
+        
+       
       }
       if (this.historyCounter >= 10) {
         this.modalToggler();
-        this.forTest = 'false';
+        
+        
       }
     },
     validateEnteredUrl(enteredUrl) {
@@ -132,8 +135,14 @@ export default {
 
         // increase history counter by 1
         this.historyCounterIncrease();
+
+        // for testing
+        this.forTest = 'true';
       }
-      return this.imgSource;
+      else{
+        this.forTest = 'false';
+      }
+      // return this.imgSource;
     },
   },
 
@@ -142,10 +151,7 @@ export default {
       fetchHistory: "getHistory",
       historyCounter: "getHistoryCounter",
     }),
-
-    embedQrImgSource() {
-      return this.imgSource;
-    },
+    
     attachDisableClass() {
       return {
         "disable-button": this.historyCounter === 10,
